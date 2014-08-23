@@ -1,0 +1,12 @@
+<div id="app-root-container"></div>
+
+<%= content_for(:javascript) do %>
+  <script type="text/javascript">
+    $(function() {
+      React.renderComponent(
+        App.Components.Root(),
+        document.getElementById('app-root-container')
+      );
+    });
+  </script>
+<% end %>

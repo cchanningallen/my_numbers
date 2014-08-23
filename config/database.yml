@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: UTF-8
+  host:     172.16.10.10
+  port:     5432
+  database: my_numbers_development
+  username: developer
+  password:
+
+test:
+  adapter: postgresql
+  encoding: UTF-8
+  host:     172.16.10.10
+  port:     5432
+  database: my_numbers_test
+  username: developer
+  password:
+
+production:
+  adapter: postgresql
+  encoding: UTF-8
+  host:     172.16.10.10
+  port:     5432
+  database: my_numbers_production
+  username: my_numbers
+  password:
