@@ -1,12 +1,24 @@
-<div id="app-root-container"></div>
+<div id="app-root-container">
+  <%= @workouts %>
+</div>
 
 <%= content_for(:javascript) do %>
   <script type="text/javascript">
     $(function() {
+      var workoutList = new App.Collections.WorkoutList();
+      workoutList.reset(<%= @workouts.to_json %>);
+
+      var rootModel = new App.Models.Root({workoutList: workoutList});
+
+      var appRouter = new App.Router(rootModel);
+
+      Backbone.history.start();
+
       React.renderComponent(
-        App.Components.Root(),
+        App.Components.Root({model: rootModel, router: appRouter}),
         document.getElementById('app-root-container')
       );
     });
   </script>
 <% end %>
+
