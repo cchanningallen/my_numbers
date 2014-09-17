@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'kaminari'
 gem 'jbuilder', '~> 1.2'
 
+gem 'grape'
 gem 'decent_exposure'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 gem 'sprockets-coffee-react'
