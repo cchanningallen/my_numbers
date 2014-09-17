@@ -1,21 +1,36 @@
-<div id="app-root-container">
-  <%= @workouts %>
+<div id="app-root-container"
+  data-workouts="<%= workouts.to_json %>"
+  data-activity-options="<%= activity_options.to_json %>" >
 </div>
 
 <%= content_for(:javascript) do %>
   <script type="text/javascript">
     $(function() {
-      var workoutList = new App.Collections.WorkoutList();
-      workoutList.reset(<%= @workouts.to_json %>);
+      console.log("renders root from wherever");
 
-      var rootModel = new App.Models.Root({workoutList: workoutList});
+      var $appRoot = $("#app-root-container");
+      var currentWorkouts = $appRoot.data('workouts');
+      App.activityOptions = $appRoot.data('activity-options');
+
+      var workoutList = new App.Collections.WorkoutList();
+      workoutList.reset(currentWorkouts)
+
+      var rootModel = new App.Models.Root({
+        workoutList: workoutList
+      });
 
       var appRouter = new App.Router(rootModel);
 
-      Backbone.history.start();
+      Backbone.history.start({
+        pushState: true,
+        root: '/workouts/'
+      });
 
       React.renderComponent(
-        App.Components.Root({model: rootModel, router: appRouter}),
+        App.Components.Root({
+          model: rootModel,
+          router: appRouter
+        }),
         document.getElementById('app-root-container')
       );
     });
