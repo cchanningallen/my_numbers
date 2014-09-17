@@ -1,6 +1,8 @@
 #= require collections/workout_list
 
 App.Components.WorkoutList = React.createBackboneClass
+  displayName: 'App.Components.WorkoutList'
+
   workoutComponents: ->
     workoutList = @getCollection()
 
@@ -14,5 +16,4 @@ App.Components.WorkoutList = React.createBackboneClass
   render: ->
     <div className="workout-list">
       { @workoutComponents() }
-      <input className="btn btn-default" type="button" value="Add Workout" onClick={@props.addWorkout} />
     </div>

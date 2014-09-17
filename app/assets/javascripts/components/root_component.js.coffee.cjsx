@@ -1,18 +1,40 @@
 #= require models/root
 
 App.Components.Root = React.createBackboneClass
-  someShit: ->
-    model = @getModel
+  displayName: 'App.Components.Root'
 
-  addWorkout: ->
-    @props.router.navigate('new', {trigger: true})
+  propTypes: {
+    model: React.PropTypes.instanceOf(App.Models.Root).isRequired
+    router: React.PropTypes.instanceOf(App.Router).isRequired
+  }
+
+  changeView: (newView) ->
+    @props.router.navigate(newView, {trigger: true})
+
+  handleSaveNew: (model, workoutList) ->
+    console.log "calling handleSaveNew"
+    { newWorkout } = model.attributes
+
+    if newWorkout.save()
+      console.log "new workout saved!"
+      workoutList.add(newWorkout)
+      model.resetNewWorkoutModel()
+      @changeView('')
+    else
+      console.log "new workout didn't save! chappin my ass..."
 
   viewFocus: ->
-    { view, workoutList } = @getModel().attributes
+    root = @getModel()
+    { view, workoutList, newWorkout } = root.attributes
 
     switch view
-      when 'main' then <App.Components.WorkoutList collection={workoutList} addWorkout={@addWorkout} />
-      when 'new' then <App.Components.NewWorkout />
+      when 'main'
+        <div className="main-view-wrapper">
+          <App.Components.WorkoutList collection={workoutList} />
+          <App.Components.AddButton text="Add Workout" onAdd={_.partial(@changeView, 'new')} />
+        </div>
+      when 'new'
+        <App.Components.WorkoutForm model={newWorkout} onSave={_.partial(@handleSaveNew, root, workoutList)} />
 
   render: ->
     <div>
