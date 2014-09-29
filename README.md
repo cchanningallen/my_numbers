@@ -17,6 +17,7 @@
 ## Structure
 
 ### 9/28
+```
 Root (model)
 |
 *- Workouts (collection)
@@ -71,6 +72,7 @@ Root (model)
 *- WorkoutDataPoints (collection) -----*
 |                                      |
 *- { other catgerory } (collection)  --*
+```
 
 
 ## Concept
