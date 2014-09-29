@@ -13,21 +13,29 @@ App.Components.WorkoutForm = React.createBackboneClass
     console.log "input changed... '#{name}: #{value}'"
     @getModel().set(name, value)
 
+  handleAdd: (type) ->
+    console.log("Clicked handleAdd: '#{type}' in workout form")
+
   activityOptions: ->
     for activity, i in App.activityOptions
       <option key={i} value={activity}>{activity}</option>
 
   render: ->
-    { name, date } = @getModel().attributes
+    { name, date, addActivity } = @getModel().attributes
 
-    <div className="workout-form">
+    <form className="workout-form" role="form">
+      <App.Components.WorkoutFormOneTimeInputs onChange={@handleChange}
       <label htmlFor="name">Name:</label>
       <input type="text" name="name" value={name} onChange={@handleChange} />
 
-      <label htmlFor="name">Activity:</label>
-      <select name="activity" onChange={@handleChange} value="" >
-        { @activityOptions() }
-      </select>
+      <label htmlFor="date">Date:</label>
+      <input type="text" name="date" value={date} onChange={@handleChange} />
+
+      <div className="workout-add-info-btns">
+        <App.Components.AddActivityButton onClick={_.partial(@handleAdd, 'activity')} />
+        <App.Components.AddAmrapButton onClick={_.partial(@handleAdd, 'amrap')} />
+        <App.Components.AddRoundsButton onClick={_.partial(@handleAdd, 'rounds')} />
+      </div>
 
       <App.Components.SaveButton onSave={@props.onSave} />
     </div>
