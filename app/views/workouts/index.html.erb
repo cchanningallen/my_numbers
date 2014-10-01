@@ -1,6 +1,7 @@
 <div id="app-root-container"
   data-workouts="<%= workouts.to_json %>"
-  data-activity-options="<%= activity_options.to_json %>" >
+  data-activity-options="<%= activity_options.to_json %>"
+  data-data-point-category-options="<%= data_point_category_options.to_json %>" >
 </div>
 
 <%= content_for(:javascript) do %>
@@ -11,12 +12,15 @@
       var $appRoot = $("#app-root-container");
       var currentWorkouts = $appRoot.data('workouts');
       App.activityOptions = $appRoot.data('activity-options');
+      var dataPointCategoryOptions = $appRoot.data('data-point-category-options');
 
       var workoutList = new App.Collections.WorkoutList();
       workoutList.reset(currentWorkouts)
 
+
       var rootModel = new App.Models.Root({
         workoutList: workoutList
+        dataPointCategoryOptions: dataPointCategoryOptions
       });
 
       var appRouter = new App.Router(rootModel);
