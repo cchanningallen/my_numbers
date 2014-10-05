@@ -2,8 +2,8 @@
 
 ## Work
 ### Todos
-  * Client: create ActivityType mdoel
-    * Client: create ActivityTypes collection
+  * Client: create ActivityType model
+  * Client: create ActivityTypes collection
   * Client: create Activity model
   * Client: create Activities collection
   * Client: create ActivityGroup model (default type == 'standard')
@@ -15,11 +15,10 @@
 
 
 ### Todone
+  * Server: create ActivityType API class
+  * Server: create ActivityType API
 
-
-## Structure
-
-### 9/28
+## Front-End Structure
 ```
 Root (model)
 |- :DATA_POINT_CATEGORY_OPTIONS (array of possible categories for
@@ -30,8 +29,9 @@ Root (model)
 |   +- ActivityType (model)
 |       |- :name
 |       |- :mod_options (array of possible modifications)
-|       |- :data_point_categories (array of relevant tags - 'lift',
-|       |    'skill', 'metcon', etc. for creating datapoints)
+|       |- :categories (array of relevant tags - 'lift', 'skill',
+|       |    'metcon', etc. for (a) creating datapoints, and (b) showing
+|       |    correct options in form)
 |       +
 |
 +- Workouts (collection)

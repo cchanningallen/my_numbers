@@ -23,14 +23,14 @@ module ActivityTypes
       params do
         requires :name
         requires :mod_options
-        requires :data_point_categories
+        requires :categories
       end
       post do
         # authenticate!
         ActivityType.create!({
           name: params[:name],
           mod_options: params[:mod_options],
-          data_point_categories: params[:data_point_categories]
+          categories: params[:categories]
         })
       end
 

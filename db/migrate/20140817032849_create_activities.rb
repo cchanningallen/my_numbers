@@ -1,11 +1,11 @@
 class CreateActivities < ActiveRecord::Migration
   def change
     create_table :activities do |t|
-      t.text :name
-      t.references :collector, index: true
+      t.references :activity_group, index: true
+      t.references :activity_type
       t.text :mod
-      t.integer :count
-      t.text :measure
+      t.integer :quantity
+      t.text :unit
       t.integer :weight
 
       t.timestamps

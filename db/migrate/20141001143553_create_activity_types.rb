@@ -2,8 +2,8 @@ class CreateActivityTypes < ActiveRecord::Migration
   def change
     create_table :activity_types do |t|
       t.string :name
-      t.array :mod_options
-      t.array :data_point_categories
+      t.text :mod_options, array: true, default: []
+      t.text :categories, array: true, default: []
 
       t.timestamps
     end
