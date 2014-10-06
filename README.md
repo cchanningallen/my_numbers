@@ -40,6 +40,8 @@ Root (model)
 |     |- :name
 |     |- :date
 |     |- :notes
+|     |- :scoreType ('time', 'rounds', ...)
+|     |- :score (string, parsed into correct format using scoreType)
 |     |
 |     +- WorkoutFeatures (collection)
 |     |  |
@@ -49,8 +51,11 @@ Root (model)
 |     |     |- * includes logic to create analytics objects by combining
 |     |     |    activites with score
 |     |     |
-|     |     |- :scoreType ('time', 'rounds', ...)
-|     |     |- :score (string, parsed into correct format using scoreType)
+|     |     |- :quantity (number of rounds or time for amrap)
+|     |     |- :change ('increasing', 'decreasing')
+|     |     |- :change_quantity
+|     |     |- :order (1, 2...)
+|     |     |
 |     |     |- :workout_id
 |     |     |
 |     |     +- Activities (collection)
@@ -61,6 +66,7 @@ Root (model)
 |     |           |- :quantity
 |     |           |- :unit
 |     |           |- :weight
+|     |           |- :order (1, 2...)
 |     |           +- :activity_group_id
 |     |
 |     +- DataPoints (collection)

@@ -4,6 +4,8 @@ class CreateWorkouts < ActiveRecord::Migration
       t.text :name
       t.date :date
       t.text :notes
+      t.text :scoreType
+      t.text :score
 
       t.timestamps
     end

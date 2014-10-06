@@ -16,6 +16,8 @@ gem 'decent_exposure'
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 gem 'sprockets-coffee-react'
 
+gem 'awesome_print'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'factory_girl'

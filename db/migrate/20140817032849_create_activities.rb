@@ -7,6 +7,7 @@ class CreateActivities < ActiveRecord::Migration
       t.integer :quantity
       t.text :unit
       t.integer :weight
+      t.integer :order
 
       t.timestamps
     end

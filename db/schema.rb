@@ -17,17 +17,31 @@ ActiveRecord::Schema.define(version: 20141001143553) do
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
-    t.text     "name"
-    t.integer  "collector_id"
+    t.integer  "activity_group_id"
+    t.integer  "activity_type_id"
     t.text     "mod"
-    t.integer  "count"
-    t.text     "measure"
+    t.integer  "quantity"
+    t.text     "unit"
     t.integer  "weight"
+    t.integer  "order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "activities", ["collector_id"], name: "index_activities_on_collector_id", using: :btree
+  add_index "activities", ["activity_group_id"], name: "index_activities_on_activity_group_id", using: :btree
+
+  create_table "activity_groups", force: true do |t|
+    t.text     "type"
+    t.text     "quantity"
+    t.text     "change"
+    t.integer  "change_quantity"
+    t.integer  "order"
+    t.integer  "workout_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "activity_groups", ["workout_id"], name: "index_activity_groups_on_workout_id", using: :btree
 
   create_table "activity_types", force: true do |t|
     t.string   "name"
@@ -37,20 +51,12 @@ ActiveRecord::Schema.define(version: 20141001143553) do
     t.datetime "updated_at"
   end
 
-  create_table "collectors", force: true do |t|
-    t.text     "type"
-    t.integer  "parent_id"
-    t.integer  "workout_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "collectors", ["parent_id"], name: "index_collectors_on_parent_id", using: :btree
-  add_index "collectors", ["workout_id"], name: "index_collectors_on_workout_id", using: :btree
-
   create_table "workouts", force: true do |t|
     t.text     "name"
     t.date     "date"
+    t.text     "notes"
+    t.text     "scoreType"
+    t.text     "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

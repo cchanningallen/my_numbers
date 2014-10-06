@@ -25,7 +25,10 @@ App.Components.WorkoutForm = React.createBackboneClass
 
     <form className="workout-form" role="form">
       <App.Components.WorkoutFormOneTimeInputs onChange={@handleChange}
-      <label htmlFor="name">Name:</label>
+      <App.Components.FormGroup name="name" label="Name:" onChange={@handleChange} />
+      <App.Components.FormGroup name="date" label="Date:" onChange={@handleChange} />
+
+      <label htmlFor="name">Name</label>
       <input type="text" name="name" value={name} onChange={@handleChange} />
 
       <label htmlFor="date">Date:</label>
